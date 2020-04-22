@@ -1,9 +1,16 @@
-ANSIBLE_ROLES_PATH?="roles"
 ANSIBLE_DEFAULT_INVENTORY?="inventories/s3group/dev/inventory"
 
-.PHONY: deploy
-deploy: clean deps
-	ansible-playbook -i $(ANSIBLE_DEFAULT_INVENTORY) playbooks/site.yml
+.PHONY: nginx
+nginx: clean deps
+	ansible-playbook -i $(ANSIBLE_DEFAULT_INVENTORY) playbooks/nginx-ingress.yml
+
+.PHONY: mysql
+mysql: clean deps
+	ansible-playbook -i $(ANSIBLE_DEFAULT_INVENTORY) playbooks/mysql.yml
+
+.PHONY: monitoring
+monitoring: clean deps
+	ansible-playbook -i $(ANSIBLE_DEFAULT_INVENTORY) playbooks/monitoring.yml
 
 .PHONY: deps
 deps:
@@ -11,5 +18,4 @@ deps:
 
 .PHONY: clean
 clean:
-	find $(ANSIBLE_ROLES_PATH) -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | xargs -I '{}' ansible-galaxy remove {}
-
+	ansible-galaxy list | grep -v 'unknown version' | grep -o -P '(?<=-).*(?=,)' | xargs -I '{}' ansible-galaxy remove {}

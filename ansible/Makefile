@@ -1,4 +1,3 @@
-ANSIBLE_ROLES_PATH?="roles"
 ANSIBLE_DEFAULT_INVENTORY?="inventories/s3group/dev/inventory"
 
 .PHONY: deploy
@@ -11,5 +10,6 @@ deps:
 
 .PHONY: clean
 clean:
-	find $(ANSIBLE_ROLES_PATH) -maxdepth 1 -mindepth 1 -type d -printf "%f\n" | xargs -I '{}' ansible-galaxy remove {}
+	ansible-galaxy list | grep -v 'unknown version' | grep -o -P '(?<=-).*(?=,)' | xargs -I '{}' ansible-galaxy remove {}
+
 

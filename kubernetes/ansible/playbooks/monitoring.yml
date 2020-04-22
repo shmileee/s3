@@ -1,0 +1,4 @@
+---
+
+- import_playbook: prometheus-operator.yml
+- import_playbook: loki.yml

@@ -1,0 +1,13 @@
+---
+
+- name: "Install loki using Helm into local Kuberenetes cluster"
+  hosts: "all"
+  gather_facts: true
+  become: true
+  vars:
+    chart_name: custom-loki
+    chart_repo_name: "loki"
+    chart_repo_uri: "https://grafana.github.io/loki/charts"
+    chart_name_from_repo: "{{ chart_repo_name }}/loki-stack"
+  roles:
+    - helm-chart-installer
