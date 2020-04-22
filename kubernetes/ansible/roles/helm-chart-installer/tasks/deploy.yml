@@ -1,0 +1,21 @@
+---
+
+- import_tasks: check_vars.yml
+- import_tasks: template_config.yml
+
+- name: "Deploy and activate {{ chart_name }}"
+  shell: |
+    helm repo add {{ chart_repo_name | default(chart_repo_name_default) }} {{ chart_repo_uri | default(chart_repo_uri_default) }}
+    helm repo update
+    helm upgrade {{ chart_name }} \
+      --install \
+      --namespace {{ kubernetes_namespace }} \
+      {% if chart_version is defined and chart_version != '' %}
+      --version {{ chart_version }} \
+      {% endif %}
+      {% if config_path.stat.exists == True %}
+      --values {{ values_file.path }} \
+      {% endif %}
+      {{ chart_name_from_repo }}
+  register: helm_output
+    

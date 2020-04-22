@@ -1,4 +1,5 @@
 ---
 
 kubernetes_namespace: default
-chart_repo: "https://kubernetes-charts.storage.googleapis.com"
+chart_repo_uri_default: "https://kubernetes-charts.storage.googleapis.com"
+chart_repo_name_default: "stable"

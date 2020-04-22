@@ -1,5 +1,11 @@
 ---
 
+- name: assert that a kubernetes_namespace is defined
+  assert:
+    that:
+    - kubernetes_namespace is defined and kubernetes_namespace != ''
+    msg: kubernetes_namespace should be defined and not empty
+
 - name: assert that a chart_name is defined
   assert:
     that:

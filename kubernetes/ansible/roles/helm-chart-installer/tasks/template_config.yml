@@ -1,0 +1,22 @@
+---
+
+- set_fact:
+    config_name: "{{ chart_name_from_repo | basename }}-values.yml.j2"
+
+- name: "Check if {{ chart_name_from_repo }} has any configs to template"
+  local_action: stat path={{ role_path }}/templates/{{ config_name }}
+  register: config_path
+  
+- block: 
+  - name: Create temporary values file
+    tempfile:
+      state: file
+      suffix: .yml
+    register: values_file
+
+  - name: Populate temporary values file
+    template:
+      src: "{{ config_name }}"
+      dest: "{{ values_file.path }}"
+    no_log: true
+  when: (config_path.stat.exists == True)

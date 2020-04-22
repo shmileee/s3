@@ -1,0 +1,11 @@
+---
+
+- name: "Install prometheus-operator using Helm into local Kuberenetes cluster"
+  hosts: "all"
+  gather_facts: true
+  become: true
+  vars:
+    chart_name: custom-prometheus-operator
+    chart_name_from_repo: stable/prometheus-operator
+  roles:
+    - helm-chart-installer

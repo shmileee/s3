@@ -1,0 +1,11 @@
+---
+
+- name: "Install Nginx Ingress controller using Helm into local Kuberenetes cluster"
+  hosts: "all"
+  gather_facts: true
+  become: true
+  vars:
+    chart_name: custom-nginx
+    chart_name_from_repo: stable/nginx-ingress
+  roles:
+    - helm-chart-installer
