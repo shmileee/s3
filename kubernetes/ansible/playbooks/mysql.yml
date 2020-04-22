@@ -1,0 +1,11 @@
+---
+
+- name: "Install MySQL using Helm into local Kuberenetes cluster"
+  hosts: "all"
+  gather_facts: true
+  become: true
+  vars:
+    chart_name: custom-mysql
+    chart_name_from_repo: stable/mysql
+  roles:
+    - helm-chart-installer

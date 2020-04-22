@@ -1,0 +1,4 @@
+---
+
+kubernetes_namespace: default
+chart_repo: "https://kubernetes-charts.storage.googleapis.com"

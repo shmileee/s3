@@ -1,0 +1,13 @@
+---
+
+- name: assert that a chart_name is defined
+  assert:
+    that:
+    - chart_name is defined and chart_name != ''
+    msg: chart_name should be defined and not empty
+
+- name: assert that a chart_name_from_repo is defined
+  assert:
+    that:
+    - chart_name_from_repo is defined and chart_name_from_repo != ''
+    msg: chart_name_from_repo should be defined and not empty
