@@ -1,0 +1,10 @@
+---
+
+- name: "Configure server(s)"
+  hosts: "all"
+  become: true
+  roles:
+    - nickjj.user
+    - geerlingguy.git
+    - geerlingguy.docker
+    - geerlingguy.kubernetes

@@ -1,0 +1,14 @@
+---
+
+# users
+- src: nickjj.user
+
+# git
+- src: geerlingguy.git
+
+# docker + dockerpy
+- src: geerlingguy.pip
+- src: geerlingguy.docker
+
+# kubernetes
+- src: geerlingguy.kubernetes

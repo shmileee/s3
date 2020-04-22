@@ -1,0 +1,12 @@
+---
+
+ansible_python_interpreter: /usr/bin/python3
+
+user_groups: []
+user_name: "s3-deployer"
+user_shell: "/bin/bash"
+user_generate_ssh_key: False
+user_local_ssh_key_path: "~/.ssh/id_rsa.pub"
+user_enable_passwordless_sudo: True
+
+kubernetes_allow_pods_on_master: True
